@@ -1,0 +1,226 @@
+openapi: 3.0.3
+info:
+  title: ATHENA — Transaction Intelligence & Compliance Ingestion API
+  version: 1.0.0
+  description: |
+    Enterprise-grade B2B SaaS Transaction Intelligence, Monitoring, Anti-Money Laundering (AML),
+    and Fraud Compliance Ingestion API engineered in Go (Golang) 1.25.
+servers:
+  - url: http://localhost:8080
+    description: Local Development Server
+  - url: https://api.athena.io
+    description: Production Server
+
+paths:
+  /v1/health:
+    get:
+      summary: Health Check
+      description: Returns service health status and PostgreSQL database connection state.
+      responses:
+        '200':
+          description: Service is healthy.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+                  database:
+                    type: string
+                    example: UP
+                  service:
+                    type: string
+                    example: athena-api
+
+  /v1/auth/register:
+    post:
+      summary: Register Compliance User
+      description: Registers a new human compliance team member (Admin/Analyst).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, full_name, tenant_id]
+              properties:
+                email:
+                  type: string
+                  example: maulana@nusantarapay.com
+                password:
+                  type: string
+                  example: P@ssw0rdSecure!
+                full_name:
+                  type: string
+                  example: Maulana
+                tenant_id:
+                  type: string
+                  format: uuid
+      responses:
+        '201':
+          description: User registered successfully.
+
+  /v1/auth/login:
+    post:
+      summary: Human Login (Session Cookie)
+      description: Authenticates compliance user and issues an HttpOnly Secure session cookie.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  example: maulana@nusantarapay.com
+                password:
+                  type: string
+                  example: P@ssw0rdSecure!
+      responses:
+        '200':
+          description: Login successful, session cookie set.
+
+  /v1/transactions:
+    post:
+      summary: Ingest Transaction (High-Throughput)
+      description: |
+        Asynchronously ingests financial transaction representation for real-time AML evaluation.
+        Enforces 12-char prefix Bcrypt lookup and SHA-256 idempotency cache.
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema:
+            type: string
+            example: tx-idemp-9948271a
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [account_id, amount, currency, counterparty_id, transaction_type]
+              properties:
+                account_id:
+                  type: string
+                  example: acc_budi_0182
+                amount:
+                  type: number
+                  example: 150000000
+                currency:
+                  type: string
+                  example: IDR
+                counterparty_id:
+                  type: string
+                  example: acc_pt_maju_882
+                transaction_type:
+                  type: string
+                  example: TRANSFER
+                channel:
+                  type: string
+                  example: BI-FAST
+      responses:
+        '202':
+          description: Transaction accepted for asynchronous AML evaluation.
+        '409':
+          description: Idempotency conflict (payload changed with same key).
+    get:
+      summary: List Transactions (Cursor-Based Pagination)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: query
+          name: cursor
+          schema:
+            type: string
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: List of transactions with next cursor pointer.
+
+  /v1/rules:
+    get:
+      summary: List Dynamic AML Rules
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: List of active rules with versioning.
+    post:
+      summary: Create New AML Rule
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '201':
+          description: Rule created successfully.
+
+  /v1/alerts:
+    get:
+      summary: List High-Priority Alerts Queue
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: query
+          name: priority
+          schema:
+            type: string
+            enum: [ALL, P1, P2, P3]
+      responses:
+        '200':
+          description: Priority alerts list.
+
+  /v1/alerts/{id}/resolve:
+    post:
+      summary: Resolve Alert & Submit Audit Verdict
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action, justification]
+              properties:
+                action:
+                  type: string
+                  enum: [CONFIRMED_FRAUD, FALSE_POSITIVE, ESCALATED]
+                justification:
+                  type: string
+                  example: Investigasi selesai. Telah dikonfirmasi via telepon bahwa akun dibajak.
+      responses:
+        '200':
+          description: Alert resolved and appended to immutable audit ledger.
+
+  /v1/webhooks:
+    post:
+      summary: Configure Outbound Webhook
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Webhook callback configured with HMAC-SHA256 signature secret.
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API Key format os_live_<random_secret> or os_test_<random_secret>

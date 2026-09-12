@@ -1,0 +1,8 @@
+psycopg[binary]
+pydantic
+openai
+tenacity
+python-dotenv
+pytest
+pytest-asyncio
+

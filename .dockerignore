@@ -1,0 +1,13 @@
+.git
+.github
+.env
+.env.*
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/venv
+**/.venv
+backend/tmp_*.go
+postgres-data
+README.md
+ARCHITECTURE.md
