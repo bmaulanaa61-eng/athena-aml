@@ -4,6 +4,14 @@ ATHENA AML adalah aplikasi B2B SaaS sederhana namun production-minded untuk mene
 
 Project ini dibuat sebagai hasil **AI-assisted development** menggunakan Cline/Cursor-like workflow: AI digunakan untuk scaffolding, refactor, test generation, Dockerization, dan dokumentasi; keputusan arsitektur tetap divalidasi lewat test otomatis dan review manual.
 
+## Live compliance dashboard
+
+Interactive frontend demo tersedia di:
+
+**https://datalabs-systems.web.app/app/omnishield**
+
+Dashboard tersebut menampilkan analyst workflow end-to-end: KPI monitoring, alert trend, risk distribution, priority alert queue, 360° case investigation, AI explanation, rules, dan webhook simulation. Repository ini tetap difokuskan pada core backend/API/worker yang dapat dijalankan dengan Docker, sementara live dashboard berfungsi sebagai presentation layer untuk menunjukkan bagaimana compliance analyst menggunakan sistemnya.
+
 ## Fitur utama
 
 - **Go Ingestion API**: REST API high-throughput menggunakan `net/http`, `chi`, dan `pgx`.
@@ -12,6 +20,7 @@ Project ini dibuat sebagai hasil **AI-assisted development** menggunakan Cline/C
 - **Idempotency engine**: `Idempotency-Key` + SHA-256 payload hash untuk mencegah double-billing.
 - **Python AML Worker**: PostgreSQL queue dengan `FOR UPDATE SKIP LOCKED`.
 - **Hybrid decisioning**: deterministic rule engine + optional OpenAI-compatible LLM enrichment.
+- **Compliance dashboard demo**: live UI for analyst triage, investigation, risk distribution, and rules/webhook workflow.
 - **Offline-safe AI fallback**: tanpa API key, worker tetap berjalan dengan deterministic fallback.
 - **Automated testing**: Go unit tests + Python pytest.
 - **Docker-ready**: `docker compose up --build` menjalankan PostgreSQL, API, dan worker.
@@ -24,6 +33,7 @@ Project ini dibuat sebagai hasil **AI-assisted development** menggunakan Cline/C
 | API | Go 1.25, chi, pgx |
 | Worker | Python 3.11, Pydantic, psycopg, OpenAI-compatible API |
 | Database | PostgreSQL 16 |
+| Frontend demo | React/Vite live compliance dashboard |
 | Container | Docker, Docker Compose |
 | CI | GitHub Actions |
 

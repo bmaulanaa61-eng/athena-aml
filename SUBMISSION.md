@@ -2,23 +2,26 @@
 
 Repository: <https://github.com/bmaulanaa61-eng/athena-aml>
 
+Live compliance dashboard: <https://datalabs-systems.web.app/app/omnishield>
+
 ## Final result
 
-ATHENA AML is a production-minded AML and fraud monitoring backend application. It accepts transaction ingestion through a Go REST API, stores work in PostgreSQL, and processes AML risk asynchronously through a Python worker. Risk decisions combine deterministic rules with optional OpenAI-compatible enrichment while remaining fully runnable without external AI credentials.
+ATHENA AML is a production-minded AML and fraud monitoring application. It accepts transaction ingestion through a Go REST API, stores work in PostgreSQL, and processes AML risk asynchronously through a Python worker. Risk decisions combine deterministic rules with optional OpenAI-compatible enrichment while remaining fully runnable without external AI credentials. A live React compliance dashboard is provided to demonstrate the analyst-facing monitoring, alert triage, investigation, rules, and webhook workflows.
 
 ## Requirement checklist
 
 | Requirement | Implementation |
 |---|---|
-| Simple application, self-defined scope | B2B AML/fraud transaction monitoring service with ingestion API, risk worker, alerts, rules, and investigation endpoints. |
-| Production-minded and maintainable by other engineers | Layered Go API, isolated Python worker, PostgreSQL schema, API auth, idempotency, Docker images, architecture notes, OpenAPI spec, CI, and clear local/deployment docs. |
+| Simple application, self-defined scope | B2B AML/fraud transaction monitoring service with ingestion API, risk worker, alerts, rules, investigation endpoints, and analyst dashboard demo. |
+| Production-minded and maintainable by other engineers | Layered Go API, isolated Python worker, PostgreSQL schema, API auth, idempotency, Docker images, architecture notes, OpenAPI spec, CI, live UI demo, and clear local/deployment docs. |
 | AI-assisted development | Built with an AI-assisted workflow using Cline/Cursor-like assistance for scaffolding, refactoring, test generation, Dockerization, and documentation. Architecture and correctness were validated by automated tests and manual review. |
 | Git and GitHub workflow | Standalone GitHub repository on `main`, Conventional Commit style, CI on push/PR, recommended feature-branch + pull-request workflow documented in `README.md`. |
 | Runnable using Docker | `docker compose up --build` starts PostgreSQL, Go API, and Python worker. |
 | Automated testing | Go unit tests via `go test ./...`; Python tests via `pytest`; GitHub Actions runs both and builds Docker images. |
+| Frontend/user-facing demo | Live dashboard at <https://datalabs-systems.web.app/app/omnishield> shows KPI monitoring, alert trend, risk distribution, priority queue, and 360° investigation UX. |
 | Documentation for handoff | `README.md`, `ARCHITECTURE.md`, `SUBMISSION.md`, `backend/api/openapi.yaml`, `.env.example` files, and inline package structure. |
 | No VPS/server provided | Deployment approach recommends managed PostgreSQL plus serverless/container platforms such as Cloud Run, Render, Fly.io, Railway, Neon, or Supabase. |
-| Timebox-friendly result | Scope kept intentionally backend-focused: API + worker + database + Docker + tests + CI + docs. |
+| Timebox-friendly result | Core repo scope stays backend-focused: API + worker + database + Docker + tests + CI + docs, complemented by a live frontend demo link. |
 
 ## How to run locally
 

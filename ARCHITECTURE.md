@@ -10,8 +10,13 @@ flowchart TD
   Worker --> Rules[Deterministic Rule Engine]
   Worker -->|optional| LLM[OpenAI-compatible LLM]
   Worker -->|risk_assessments + alerts| DB
-  Analyst[Compliance Analyst] -->|alerts/investigation APIs| API
+  Analyst[Compliance Analyst] --> FE[Live React Compliance Dashboard]
+  FE -->|alerts, transactions, investigations, rules APIs| API
 ```
+
+Live analyst UI demo: <https://datalabs-systems.web.app/app/omnishield>
+
+The repository contains the production-minded core services: Go API, Python worker, PostgreSQL schema, Docker, tests, and CI. The live React dashboard is the presentation layer used to demonstrate how compliance users monitor KPIs, triage alerts, inspect 360° investigations, review AI explanations, and manage rules/webhooks on top of those APIs.
 
 ## Key design decisions
 
