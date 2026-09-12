@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	"omnishield/pkg/errors"
-	"omnishield/pkg/response"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/response"
 )
 
 type Handler struct {

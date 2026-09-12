@@ -3,7 +3,7 @@ package database
 import (
 	"context"
 	"fmt"
-	"omnishield/internal/config"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/config"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 )

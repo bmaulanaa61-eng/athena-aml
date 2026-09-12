@@ -1,4 +1,4 @@
-module omnishield
+module github.com/bmaulanaa61-eng/athena-aml/backend
 
 go 1.25.0
 

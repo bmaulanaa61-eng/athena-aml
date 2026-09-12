@@ -1,5 +1,5 @@
 -- =============================================================================
--- OmniShield FinTech — Core Database Schema Migration v1.2 (PRD Compliant)
+-- ATHENA AML — Core Database Schema Migration v1.2
 -- Target: PostgreSQL 14+ | 15 Core Tables with UUID PK & JSONB
 -- =============================================================================
 

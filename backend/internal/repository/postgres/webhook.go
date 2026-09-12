@@ -8,8 +8,8 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"omnishield/internal/webhook"
-	"omnishield/pkg/errors"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/webhook"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
 )
 
 type PostgresWebhookRepository struct {

@@ -7,8 +7,8 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"omnishield/internal/rule"
-	"omnishield/pkg/errors"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/rule"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
 )
 
 type PostgresRuleRepository struct {

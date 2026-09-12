@@ -2,7 +2,7 @@ package repository
 
 import (
 	"context"
-	"omnishield/internal/transaction"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/transaction"
 )
 
 type TransactionRepository interface {

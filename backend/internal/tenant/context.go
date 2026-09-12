@@ -3,7 +3,7 @@ package tenant
 import (
 	"context"
 
-	"omnishield/pkg/errors"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
 )
 
 type contextKey string

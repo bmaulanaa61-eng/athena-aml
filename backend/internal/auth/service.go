@@ -10,7 +10,7 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	"omnishield/pkg/errors"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
 )
 
 type Repository interface {

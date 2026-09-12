@@ -9,9 +9,9 @@ import (
 	"syscall"
 	"time"
 
-	"omnishield/internal/config"
-	"omnishield/internal/database"
-	"omnishield/routes"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/config"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/database"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/routes"
 )
 
 func main() {

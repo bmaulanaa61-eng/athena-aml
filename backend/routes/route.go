@@ -6,15 +6,15 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"omnishield/internal/alert"
-	"omnishield/internal/auth"
-	"omnishield/internal/investigation"
-	"omnishield/internal/middleware"
-	"omnishield/internal/repository/postgres"
-	"omnishield/internal/rule"
-	"omnishield/internal/transaction"
-	"omnishield/internal/webhook"
-	"omnishield/pkg/response"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/alert"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/auth"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/investigation"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/middleware"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/repository/postgres"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/rule"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/transaction"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/webhook"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/response"
 )
 
 func SetupRoutes(db *pgxpool.Pool) *chi.Mux {

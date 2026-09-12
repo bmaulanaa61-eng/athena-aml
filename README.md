@@ -121,6 +121,10 @@ Worker: lihat `worker/.env.example`.
 
 `AI_API_KEY` bersifat opsional. Jika kosong, worker menggunakan offline deterministic fallback agar demo dan test tetap stabil tanpa vendor dependency.
 
+## Submission notes
+
+Ringkasan pemenuhan assignment tersedia di [`SUBMISSION.md`](./SUBMISSION.md).
+
 ## API documentation
 
 OpenAPI spec tersedia di `backend/api/openapi.yaml`.

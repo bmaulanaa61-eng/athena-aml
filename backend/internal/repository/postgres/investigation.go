@@ -7,8 +7,8 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"omnishield/internal/investigation"
-	"omnishield/pkg/errors"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/investigation"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
 )
 
 type PostgresInvestigationRepository struct {
@@ -154,7 +154,7 @@ func (r *PostgresInvestigationRepository) GetTimeline(ctx context.Context, tenan
 	timeline := []investigation.CaseTimelineItem{
 		{
 			EventType: "ALERT_TRIGGERED",
-			Actor:     "OmniShield AML Engine",
+			Actor:     "ATHENA AML Engine",
 			Detail:    "Peringatan anomali transaksi terdeteksi dan antrean investigasi dibuka.",
 			Timestamp: alertCreatedAt,
 		},

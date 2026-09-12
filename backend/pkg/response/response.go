@@ -5,7 +5,7 @@ import (
 	"errors"
 	"net/http"
 
-	appErrors "omnishield/pkg/errors"
+	appErrors "github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
 )
 
 type ErrorResponse struct {

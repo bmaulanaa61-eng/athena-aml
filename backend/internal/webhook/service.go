@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"time"
 
-	"omnishield/pkg/errors"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
 )
 
 type Repository interface {
@@ -56,7 +56,7 @@ func (s *Service) TestPing(ctx context.Context, tenantID string) (*WebhookDelive
 	}
 
 	eventID := "evt_test_" + hex.EncodeToString([]byte(tenantID[:8]))
-	payload := []byte(`{"event":"PING","message":"OmniShield Webhook Test Delivery Successful","timestamp":"` + time.Now().UTC().Format(time.RFC3339) + `"}`)
+	payload := []byte(`{"event":"PING","message":"ATHENA AML Webhook Test Delivery Successful","timestamp":"` + time.Now().UTC().Format(time.RFC3339) + `"}`)
 
 	return s.repo.CreateDelivery(ctx, tenantID, eventID, "PING", payload, "DELIVERED", 200)
 }

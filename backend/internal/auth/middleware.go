@@ -9,9 +9,9 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 	"golang.org/x/crypto/bcrypt"
 
-	"omnishield/internal/tenant"
-	"omnishield/pkg/errors"
-	"omnishield/pkg/response"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/tenant"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/response"
 )
 
 func RequireAPIKey(db *pgxpool.Pool) func(http.Handler) http.Handler {

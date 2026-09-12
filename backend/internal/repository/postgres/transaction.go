@@ -10,9 +10,9 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"omnishield/internal/middleware"
-	"omnishield/internal/transaction"
-	"omnishield/pkg/errors"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/middleware"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/internal/transaction"
+	"github.com/bmaulanaa61-eng/athena-aml/backend/pkg/errors"
 )
 
 type PostgresTransactionRepository struct {
